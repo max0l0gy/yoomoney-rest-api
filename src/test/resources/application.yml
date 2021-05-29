@@ -1,0 +1,14 @@
+yoomoney-api:
+  shop-id: 123
+  secret-key: SUHDfsfsxmfnssDHSmvdysapg0vcjd
+
+yoomoney-api/mp-rest/url: http://localhost:8089
+
+quarkus:
+  http:
+    test-port: 8083
+    test-ssl-port: 8446
+  log:
+    level: DEBUG
+    console:
+      level: INFO

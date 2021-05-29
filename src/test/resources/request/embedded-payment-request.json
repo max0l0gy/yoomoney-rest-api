@@ -1,0 +1,10 @@
+{
+  "amount": {
+    "value": "2.00",
+    "currency": "RUB"
+  },
+  "confirmation": {
+    "type": "embedded"
+  },
+  "description": "Order No. 72"
+}
