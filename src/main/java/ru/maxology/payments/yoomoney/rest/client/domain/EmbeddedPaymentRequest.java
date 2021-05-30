@@ -1,4 +1,4 @@
-package ru.maxology.payments.yoomoney.rest.client.dto;
+package ru.maxology.payments.yoomoney.rest.client.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +13,7 @@ import ru.maxology.payments.yoomoney.dto.PaymentTokenRequest;
 public class EmbeddedPaymentRequest extends DomainJson {
     Amount amount;
     Confirmation confirmation;
+    Boolean capture;
     String description;
 
     @SneakyThrows
@@ -26,10 +27,9 @@ public class EmbeddedPaymentRequest extends DomainJson {
                         .setCurrency("RUB")
                         .setValue(paymentTokenRequest.getAmount())
                 )
+                .setCapture(true)
                 .setDescription(paymentTokenRequest.getIdempotenceKey())
-                .setConfirmation(new Confirmation()
-                        .setType(Confirmation.EMBEDDED)
-                )
+                .setConfirmation(new Confirmation().setType(Confirmation.EMBEDDED))
                 ;
     }
 }

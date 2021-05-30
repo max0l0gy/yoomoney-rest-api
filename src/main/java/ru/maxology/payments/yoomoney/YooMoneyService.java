@@ -1,11 +1,10 @@
 package ru.maxology.payments.yoomoney;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
-import ru.maxology.payments.yoomoney.dto.PaymentTokenResponse;
 import ru.maxology.payments.yoomoney.dto.PaymentTokenRequest;
 import ru.maxology.payments.yoomoney.rest.client.YooMoneyRestClient;
-import ru.maxology.payments.yoomoney.rest.client.dto.EmbeddedPaymentRequest;
-import ru.maxology.payments.yoomoney.rest.client.dto.EmbeddedPaymentResponse;
+import ru.maxology.payments.yoomoney.rest.client.domain.EmbeddedPaymentRequest;
+import ru.maxology.payments.yoomoney.rest.client.domain.EmbeddedPaymentResponse;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -18,14 +17,12 @@ public class YooMoneyService {
     @Inject
     YooMoneyProperties yooMoneyProperties;
 
-    public PaymentTokenResponse getPayment(PaymentTokenRequest paymentTokenRequest) {
-        EmbeddedPaymentResponse response = yooMoneyRestClient.getPayment(
+    public EmbeddedPaymentResponse getPayment(PaymentTokenRequest paymentTokenRequest) {
+        return yooMoneyRestClient.getPayment(
                 yooMoneyProperties.basicAuthorization(),
                 paymentTokenRequest.getIdempotenceKey(),
                 EmbeddedPaymentRequest.of(paymentTokenRequest)
         );
-        return new PaymentTokenResponse()
-                .setConfirmationToken(response.getConfirmation().getConfirmationToken());
     }
 
 }

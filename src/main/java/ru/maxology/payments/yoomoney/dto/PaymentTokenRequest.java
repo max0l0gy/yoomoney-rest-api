@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.SneakyThrows;
 import lombok.experimental.Accessors;
-import ru.maxology.payments.yoomoney.rest.client.dto.EmbeddedPaymentResponse;
 
 import java.math.BigDecimal;
 

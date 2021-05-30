@@ -2,8 +2,8 @@ package ru.maxology.payments.yoomoney.rest.client;
 
 import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-import ru.maxology.payments.yoomoney.rest.client.dto.EmbeddedPaymentRequest;
-import ru.maxology.payments.yoomoney.rest.client.dto.EmbeddedPaymentResponse;
+import ru.maxology.payments.yoomoney.rest.client.domain.EmbeddedPaymentRequest;
+import ru.maxology.payments.yoomoney.rest.client.domain.EmbeddedPaymentResponse;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.HeaderParam;

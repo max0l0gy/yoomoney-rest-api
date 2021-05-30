@@ -1,4 +1,4 @@
-package ru.maxology.payments.yoomoney.rest.client.dto;
+package ru.maxology.payments.yoomoney.rest.client.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
