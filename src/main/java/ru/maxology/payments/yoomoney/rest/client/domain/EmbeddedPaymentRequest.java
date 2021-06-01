@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.SneakyThrows;
 import lombok.experimental.Accessors;
 import ru.maxology.payments.yoomoney.dto.DomainJson;
-import ru.maxology.payments.yoomoney.dto.PaymentTokenRequest;
+import ru.maxology.payments.yoomoney.dto.PaymentRequest;
 
 @Data
 @Accessors(chain = true)
@@ -21,14 +21,14 @@ public class EmbeddedPaymentRequest extends DomainJson {
         return MAPPER.readValue(jsonReq, EmbeddedPaymentRequest.class);
     }
 
-    public static EmbeddedPaymentRequest of(PaymentTokenRequest paymentTokenRequest) {
+    public static EmbeddedPaymentRequest of(PaymentRequest paymentRequest) {
         return new EmbeddedPaymentRequest()
                 .setAmount(new Amount()
                         .setCurrency("RUB")
-                        .setValue(paymentTokenRequest.getAmount())
+                        .setValue(paymentRequest.getAmount())
                 )
                 .setCapture(true)
-                .setDescription(paymentTokenRequest.getIdempotenceKey())
+                .setDescription(paymentRequest.getIdempotenceKey())
                 .setConfirmation(new Confirmation().setType(Confirmation.EMBEDDED))
                 ;
     }
