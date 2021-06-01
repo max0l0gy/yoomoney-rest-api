@@ -8,4 +8,10 @@ import lombok.experimental.Accessors;
 public class RestResponse<T> {
     private String status;
     T data;
+
+    public static <T> RestResponse<T> success(T data) {
+        return new RestResponse<T>()
+                .setData(data)
+                .setStatus("success");
+    }
 }

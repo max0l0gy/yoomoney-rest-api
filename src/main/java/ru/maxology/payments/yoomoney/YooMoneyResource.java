@@ -4,10 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import ru.maxology.payments.yoomoney.dto.PaymentRequest;
 import ru.maxology.payments.yoomoney.dto.RestResponse;
 import ru.maxology.payments.yoomoney.rest.client.domain.EmbeddedPaymentResponse;
+import ru.maxology.payments.yoomoney.rest.client.domain.RefundRequest;
+import ru.maxology.payments.yoomoney.rest.client.domain.RefundResponse;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -26,20 +29,24 @@ public class YooMoneyResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public RestResponse<EmbeddedPaymentResponse> initial(PaymentRequest paymentRequest) {
-        return new RestResponse<EmbeddedPaymentResponse>()
-                .setStatus("success")
-                .setData(yooMoneyService.initial(paymentRequest))
-                ;
+        return RestResponse.success(yooMoneyService.initial(paymentRequest));
     }
 
     @GET
     @Path("/payments/{paymentId}")
     @Produces(MediaType.APPLICATION_JSON)
     public RestResponse<EmbeddedPaymentResponse> getPayment(@PathParam("paymentId") String paymentId) {
-        return new RestResponse<EmbeddedPaymentResponse>()
-                .setStatus("success")
-                .setData(yooMoneyService.getPayment(paymentId))
-                ;
+        return RestResponse.success(yooMoneyService.getPayment(paymentId));
+    }
+
+    @POST
+    @Path("/refunds")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public RestResponse<RefundResponse> refunds(
+            @HeaderParam("Idempotence-Key") String idempotenceKey,
+            RefundRequest refundRequest) {
+        return RestResponse.success(yooMoneyService.refund(idempotenceKey, refundRequest));
     }
 
 }

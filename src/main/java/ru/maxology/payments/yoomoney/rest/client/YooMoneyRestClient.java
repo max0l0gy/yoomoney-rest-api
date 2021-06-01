@@ -4,6 +4,8 @@ import org.eclipse.microprofile.rest.client.annotation.RegisterProvider;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import ru.maxology.payments.yoomoney.rest.client.domain.EmbeddedPaymentRequest;
 import ru.maxology.payments.yoomoney.rest.client.domain.EmbeddedPaymentResponse;
+import ru.maxology.payments.yoomoney.rest.client.domain.RefundRequest;
+import ru.maxology.payments.yoomoney.rest.client.domain.RefundResponse;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
@@ -34,6 +36,15 @@ public interface YooMoneyRestClient {
     EmbeddedPaymentResponse getPayment(
             @HeaderParam("Authorization") String authorization,
             @PathParam("paymentId") String paymentId
+    );
+
+    @POST
+    @Path("/v3/refunds")
+    @Produces(MediaType.APPLICATION_JSON)
+    RefundResponse refund(
+            @HeaderParam("Authorization") String authorization,
+            @HeaderParam("Idempotence-Key") String idempotenceKey,
+            RefundRequest refundRequest
     );
 
 }
