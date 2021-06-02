@@ -10,13 +10,13 @@ import java.math.BigDecimal;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
-public class PaymentTokenRequest extends DomainJson {
+public class PaymentRequest extends DomainJson {
     private String idempotenceKey;
     private BigDecimal amount;
     private String description;
 
     @SneakyThrows
-    public static PaymentTokenRequest fromJsonString(String json) {
-        return MAPPER.readValue(json, PaymentTokenRequest.class);
+    public static PaymentRequest fromJsonString(String json) {
+        return MAPPER.readValue(json, PaymentRequest.class);
     }
 }

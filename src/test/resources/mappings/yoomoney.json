@@ -44,6 +44,73 @@
           "test" : false
         }
       }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/v3/payments/2840bb6e-000f-5000-a000-151e92335af3"
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id" : "2840bb6e-000f-5000-a000-151e92335af3",
+          "status" : "succeeded",
+          "paid" : true,
+          "amount" : {
+            "value" : "2.00",
+            "currency" : "RUB"
+          },
+          "created_at" : "2021-05-26T19:55:26.472Z",
+          "description" : "Order No. 72",
+          "metadata" : { },
+          "recipient" : {
+            "account_id" : "729697",
+            "gateway_id" : "1744364"
+          },
+          "refundable" : false,
+          "test" : false
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/v3/refunds",
+        "headers": {
+          "Idempotence-Key": {
+            "equalTo": "100"
+          }
+        }
+      },
+      "response": {
+        "delayDistribution": {
+          "type": "lognormal",
+          "median": 90,
+          "sigma": 0.1
+        },
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "jsonBody": {
+          "id": "216749f7-0016-50be-b000-078d43a63ae4",
+          "status": "succeeded",
+          "amount": {
+            "value": "2.0",
+            "currency": "RUB"
+          },
+          "created_at": "2017-10-04T19:27:51.407Z",
+          "payment_id": "216749da-000f-50be-b000-096747fad91e"
+        }
+      }
     }
   ]
 }
