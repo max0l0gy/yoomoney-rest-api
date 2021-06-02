@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: eshop
+  name: yoomoney-rest-api
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: yoomoney-rest-api
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: eshop
+  name: yoomoney-rest-api-deployment
+  labels:
+    app: yoomoney-rest-api
+spec:
+  selector:
+    matchLabels:
+      app: yoomoney-rest-api
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: yoomoney-rest-api
+    spec:
+      containers:
+        - name: eshop
+          image: maxmorev/yoomoney-rest-api:latest
+          ports:
+            - containerPort: 8080
+              name: quarkus
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "256m" # 1/4 core
+            limits:
+              memory: "512Mi"
+              cpu: "500m" # 1/2 core
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 8080
+            initialDelaySeconds: 7
+            timeoutSeconds: 5
+            periodSeconds: 3
+            failureThreshold: 1
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 8
+            failureThreshold: 1
+          env:
+            - name: YOOMONEY_SHOP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: yoomoney-rest-api
+                  key: YOOMONEY_SHOP_ID
+            - name: YOOMONEY_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: yoomoney-rest-api
+                  key: YOOMONEY_SECRET_KEY

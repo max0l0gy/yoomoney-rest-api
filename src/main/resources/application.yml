@@ -1,5 +1,5 @@
 yoomoney-api:
-  shop-id: ${PAYPAL_CLIENT_ID}
-  secret-key: ${PAYPAL_SECRET}
+  shop-id: ${YOOMONEY_SHOP_ID}
+  secret-key: ${YOOMONEY_SECRET_KEY}
 yoomoney-api/mp-rest/url: https://api.yookassa.ru
 yoomoney-api/mp-rest/scope: javax.inject.Singleton
