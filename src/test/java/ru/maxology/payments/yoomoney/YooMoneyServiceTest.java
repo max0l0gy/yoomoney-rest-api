@@ -57,6 +57,7 @@ class YooMoneyServiceTest {
         assertTrue(paymentResponse.getPaid());
         assertEquals(0, paymentResponse.getAmount().getValue().compareTo(BigDecimal.valueOf(2.00)));
         assertEquals("RUB", paymentResponse.getAmount().getCurrency());
+        assertEquals("Order No. 72", paymentResponse.getDescription());
     }
 
     @Test

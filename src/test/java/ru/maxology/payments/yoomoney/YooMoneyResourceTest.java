@@ -51,13 +51,14 @@ class YooMoneyResourceTest {
                 .body("data.amount.currency", is("RUB"))
                 .body("data.created_at", is("2021-05-26T19:55:26.472Z"))
                 .body("data.confirmation", nullValue())
+                .body("data.description", is("Order No. 72"))
         ;
     }
 
     @Test
     void refunds() {
         given()
-                .header(new Header("Idempotence-Key","100"))
+                .header(new Header("Idempotence-Key", "100"))
                 .body(getBody("request/refund-request.json"))
                 .contentType("application/json")
                 .when().post("/v1/refunds")

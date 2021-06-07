@@ -25,5 +25,6 @@ public class EmbeddedPaymentResponse extends DomainJson {
     private Confirmation confirmation;
     @JsonProperty("created_at")
     private Instant createdAt;
+    private String description;
 
 }
