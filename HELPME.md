@@ -1,5 +1,3 @@
-
-````
 ## Build
 ````
 ./mvnw package
