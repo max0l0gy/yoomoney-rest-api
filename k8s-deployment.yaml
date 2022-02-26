@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: eshop
-          image: maxmorev/yoomoney-rest-api:latest
+          image: maxmorev/yoomoney-rest-api:0.0.1
           ports:
             - containerPort: 8080
               name: quarkus
